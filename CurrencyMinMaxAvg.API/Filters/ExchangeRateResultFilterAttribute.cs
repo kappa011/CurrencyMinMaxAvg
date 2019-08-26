@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CurrencyMinMaxAvg.API.Filters
 {
-    public class ExchangeRateResultFilterAttribute : ResultFilterAttribute
+    public class ExchangeRatesResultFilterAttribute : ResultFilterAttribute
     {
         public override async Task OnResultExecutionAsync(ResultExecutingContext context,
             ResultExecutionDelegate next)

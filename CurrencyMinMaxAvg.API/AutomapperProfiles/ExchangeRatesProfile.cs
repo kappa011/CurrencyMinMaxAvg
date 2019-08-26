@@ -1,18 +1,18 @@
-﻿using AutoMapper;
+﻿using System.Collections.Generic;
+using System.Linq;
+using AutoMapper;
 using CurrencyMinMaxAvg.API.DTOs;
 using CurrencyMinMaxAvg.API.ExternalModels;
-using System.Collections.Generic;
-using System.Linq;
 
-namespace CurrencyMinMaxAvg.API
+namespace CurrencyMinMaxAvg.API.AutomapperProfiles
 {
-    public class ExchangeRateProfile : Profile
+    public class ExchangeRatesProfile : Profile
     {
-        public ExchangeRateProfile()
+        public ExchangeRatesProfile()  
         {
             CreateMap<IEnumerable<ExchangeRateOnADate>, ExchangeRatesMinMaxAvgDto>()
-                //.ForMember(dest => dest.BaseCurrency, opt => opt.MapFrom(src => src.Select(b => b.Base).First()))
-                //.ForMember(dest => dest.TargetCurrency, opt => opt.MapFrom(src => src.SelectMany(t => t.Rates.Keys).Min()))
+                .ForMember(dest => dest.BaseCurrency, opt => opt.MapFrom(src => src.Select(b => b.Base).First()))
+                .ForMember(dest => dest.TargetCurrency, opt => opt.MapFrom(src => src.SelectMany(t => t.Rates.Keys).Min()))
                 .ForPath(dest => dest.MinRate.Value,
                     opt => opt.MapFrom(src => src.SelectMany(s => s.Rates.Values).Min()))
                 .ForPath(dest => dest.MinRate.Date,

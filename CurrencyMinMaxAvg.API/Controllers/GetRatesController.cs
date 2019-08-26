@@ -33,7 +33,7 @@ namespace CurrencyMinMaxAvg.API.Controllers
         //}
 
         [HttpGet]
-        [ExchangeRateResultFilter]
+        [ExchangeRatesResultFilter]
         [Route("{baseCurrency}/{targetCurrency}")]
         public async Task<IActionResult> GetRatesOnDates(
             [FromRoute] string baseCurrency,
