@@ -1,11 +1,18 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using CurrencyMinMaxAvg.API.CustomAttributes;
+using CurrencyMinMaxAvg.API.Enumerators;
+using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace CurrencyMinMaxAvg.API.DTOs
 {
     public class ExchangeRatesMinMaxAvgDto
     {
-        public string BaseCurrency { get; set; }
-        public string TargetCurrency { get; set; }
+        [JsonIgnore]
+        public CurrenciesEnum BaseCurr { get; set; }
+        public string BaseCurrency => BaseCurr.ToString();
+        [JsonIgnore]
+        public CurrenciesEnum TargetCurr { get; set; }
+        public string TargetCurrency => TargetCurr.ToString();
         public MinimumRate MinRate { get; set; }
         public MaximumRate MaxRate { get; set; }
         public decimal AvgRate { get; set; }

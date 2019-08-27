@@ -1,13 +1,11 @@
-﻿using CurrencyMinMaxAvg.API.CustomModelBinders;
-using CurrencyMinMaxAvg.API.ExternalModels;
+﻿using CurrencyMinMaxAvg.API.ExternalModels;
 using CurrencyMinMaxAvg.API.Filters;
+using CurrencyMinMaxAvg.API.QueryObjects;
 using CurrencyMinMaxAvg.API.Services;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using CurrencyMinMaxAvg.API.DTOs;
 
 namespace CurrencyMinMaxAvg.API.Controllers
 {
@@ -36,12 +34,11 @@ namespace CurrencyMinMaxAvg.API.Controllers
         [ExchangeRatesResultFilter]
         [Route("{baseCurrency}/{targetCurrency}")]
         public async Task<IActionResult> GetRatesOnDates(
-            [FromRoute] string baseCurrency,
-            [FromRoute] string targetCurrency,
-            [FromQuery] [ModelBinder(BinderType = typeof(ArrayModelBinder))] IEnumerable<string> dates)
+            [FromRoute, FromQuery] CurrenciesDatesQuery query)
         {
             var ratesOnDates =
-                await _iCallExternalApiService.GetExchangeRatesOnDatesAsync(baseCurrency, targetCurrency, dates);
+                await _iCallExternalApiService.GetExchangeRatesOnDatesAsync(
+                    query.BaseCurrency, query.TargetCurrency, query.Dates);
 
             var exchangeRatesOnDates = ratesOnDates as ExchangeRateOnADate[] ?? ratesOnDates.ToArray();
             

@@ -11,8 +11,8 @@ namespace CurrencyMinMaxAvg.API.AutomapperProfiles
         public ExchangeRatesProfile()  
         {
             CreateMap<IEnumerable<ExchangeRateOnADate>, ExchangeRatesMinMaxAvgDto>()
-                .ForMember(dest => dest.BaseCurrency, opt => opt.MapFrom(src => src.Select(b => b.Base).First()))
-                .ForMember(dest => dest.TargetCurrency, opt => opt.MapFrom(src => src.SelectMany(t => t.Rates.Keys).Min()))
+                .ForMember(dest => dest.BaseCurr, opt => opt.MapFrom(src => src.Select(b => b.Base).First()))
+                .ForMember(dest => dest.TargetCurr, opt => opt.MapFrom(src => src.SelectMany(t => t.Rates.Keys).Min()))
                 .ForPath(dest => dest.MinRate.Value,
                     opt => opt.MapFrom(src => src.SelectMany(s => s.Rates.Values).Min()))
                 .ForPath(dest => dest.MinRate.Date,

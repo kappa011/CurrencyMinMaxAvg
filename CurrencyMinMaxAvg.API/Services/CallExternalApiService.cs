@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
+using CurrencyMinMaxAvg.API.Enumerators;
 
 namespace CurrencyMinMaxAvg.API.Services
 {
@@ -31,8 +32,8 @@ namespace CurrencyMinMaxAvg.API.Services
         //    return null;
         //}
 
-        public async Task<IEnumerable<ExchangeRateOnADate>> GetExchangeRatesOnDatesAsync(string baseCurrency,
-            string targetCurrency, IEnumerable<string> dates)
+        public async Task<IEnumerable<ExchangeRateOnADate>> GetExchangeRatesOnDatesAsync(CurrenciesEnum baseCurrency,
+                CurrenciesEnum targetCurrency, IEnumerable<string> dates)
         {
             var httpClient = _httpClientFactory.CreateClient();
 
