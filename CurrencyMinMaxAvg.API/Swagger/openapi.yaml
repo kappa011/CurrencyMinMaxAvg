@@ -1,0 +1,102 @@
+openapi: 3.0.1
+info:
+  title: 'Currency Exchange Rates API - Min, Max, Average'
+  version: v1
+paths:
+  '/api/GetRates/{baseCurrency}/{targetCurrency}':
+    get:
+      tags:
+        - GetRates
+      parameters:
+        - name: baseCurrency
+          in: path
+          required: true
+          schema:
+            enum:
+              - AUD
+              - BGN
+              - BRL
+              - CAD
+              - CHF
+              - CNY
+              - CZK
+              - DKK
+              - EUR
+              - GBP
+              - HKD
+              - HRK
+              - HUF
+              - IDR
+              - ILS
+              - INR
+              - ISK
+              - JPY
+              - KRW
+              - MXN
+              - MYR
+              - NOK
+              - NZD
+              - PHP
+              - PLN
+              - RON
+              - RUB
+              - SEK
+              - SGD
+              - THB
+              - TRY
+              - USD
+              - ZAR
+            type: string
+        - name: targetCurrency
+          in: path
+          required: true
+          schema:
+            enum:
+              - AUD
+              - BGN
+              - BRL
+              - CAD
+              - CHF
+              - CNY
+              - CZK
+              - DKK
+              - EUR
+              - GBP
+              - HKD
+              - HRK
+              - HUF
+              - IDR
+              - ILS
+              - INR
+              - ISK
+              - JPY
+              - KRW
+              - MXN
+              - MYR
+              - NOK
+              - NZD
+              - PHP
+              - PLN
+              - RON
+              - RUB
+              - SEK
+              - SGD
+              - THB
+              - TRY
+              - USD
+              - ZAR
+            type: string
+        - name: dates
+          in: query
+          style: form
+          explode: false
+          allowReserved: true
+          required: true
+          schema:
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: Success
+components: {}

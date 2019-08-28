@@ -5,6 +5,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
+using Microsoft.OpenApi.Models;
+using System.IO;
 
 namespace CurrencyMinMaxAvg.API
 {
@@ -25,6 +28,13 @@ namespace CurrencyMinMaxAvg.API
             services.AddMvc()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1",
+                    new OpenApiInfo { Title = "Currency Exchange Rates API - Min, Max, Average", Version = "v1" });
+                c.DescribeAllEnumsAsStrings();
+            });
+
             services.AddAutoMapper(typeof(Startup));
 
             services.AddHttpClient();
@@ -43,7 +53,24 @@ namespace CurrencyMinMaxAvg.API
                 app.UseHsts();
             }
 
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(
+                    Path.Combine(Directory.GetCurrentDirectory(), "Swagger")),
+                RequestPath = "/swagger"
+            });
+
             app.UseHttpsRedirection();
+
+            app.UseSwagger();
+
+            app.UseSwaggerUI(c =>
+            {
+                //c.SwaggerEndpoint("/swagger/v1/swagger.json", "Currency Exchange Rates API - Min, Max, Average v1");
+                c.SwaggerEndpoint("/swagger/swagger.json", "Currency Exchange Rates API - Min, Max, Average v1");
+                c.RoutePrefix = string.Empty;
+            });
+
             app.UseMvc();
         }
     }

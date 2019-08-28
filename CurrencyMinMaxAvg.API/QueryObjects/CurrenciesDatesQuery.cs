@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
-using CurrencyMinMaxAvg.API.CustomAttributes;
-using CurrencyMinMaxAvg.API.CustomModelBinders;
+﻿using CurrencyMinMaxAvg.API.CustomModelBinders;
 using CurrencyMinMaxAvg.API.Enumerators;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace CurrencyMinMaxAvg.API.QueryObjects
 {
@@ -23,6 +21,8 @@ namespace CurrencyMinMaxAvg.API.QueryObjects
         [FromQuery]
         [Required]
         [ModelBinder(BinderType = typeof(ArrayModelBinder))]
-        public IEnumerable<string> Dates { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
+        public IEnumerable<DateTime> Dates { get; set; }
     }
 }
