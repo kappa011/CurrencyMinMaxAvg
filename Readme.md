@@ -9,7 +9,7 @@ That API is documented at [https://exchangeratesapi.io/](https://exchangeratesap
 
 The repo contains entire Visual Studio project. The Web API can be:
 
-- Hosted and run locally, from Visual Studio on IIS Express
+- Downloaded and run locally, from Visual Studio on IIS Express
 - Hosted on Windows with IIS ([description](https://docs.microsoft.com/en-us/aspnet/core/host-and-deploy/iis/?view=aspnetcore-2.2))
 - Hosted in a Windows Service ([description](https://docs.microsoft.com/en-us/aspnet/core/host-and-deploy/windows-service?view=aspnetcore-2.2&tabs=visual-studio))
 - Published to Azure with Visual Studio ([description](https://docs.microsoft.com/en-us/aspnet/core/tutorials/publish-to-azure-webapp-using-vs?view=aspnetcore-2.2))
