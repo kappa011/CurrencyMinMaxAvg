@@ -3,7 +3,7 @@
 This .NET Core 2.2 Web API returns historical exchange rate information.
 
 It connects to and uses another API provided by the ECB as its data source.
-This API is documented at [https://exchangeratesapi.io/](https://exchangeratesapi.io/).
+That API is documented at [https://exchangeratesapi.io/](https://exchangeratesapi.io/).
 
 ## Installation
 
