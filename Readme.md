@@ -26,7 +26,7 @@ The service exposes an endpoint that accepts this input:
 
 > \*_Available currency values:_ AUD, BGN, BRL, CAD, CHF, CNY, CZK, DKK, EUR, GBP, HKD, HRK, HUF, IDR, ILS, INR, ISK, JPY, KRW, MXN, MYR, NOK, NZD, PHP, PLN, RON, RUB, SEK, SGD, THB, TRY, USD, ZAR
 
-The service returns the following information, aggregated from values provided for each individual date:
+The service returns the following information, aggregated from values obtained for each individual date:
 
 - minimum exchange rate during the period
 - maximum exchange rate during the period
