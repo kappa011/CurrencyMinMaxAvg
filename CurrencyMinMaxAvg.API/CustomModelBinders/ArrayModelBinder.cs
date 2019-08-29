@@ -35,18 +35,26 @@ namespace CurrencyMinMaxAvg.API.CustomModelBinders
             var converter = TypeDescriptor.GetConverter(elementType);
 
             //Convert each item in the value list to enumerable type
-            var values = value.Split(new[] { "," }, StringSplitOptions.RemoveEmptyEntries)
-                .Select(x => converter.ConvertFromString(x.Trim()))
-                .ToArray();
+            try
+            {
+                var values = value.Split(new[] { "," }, StringSplitOptions.RemoveEmptyEntries)
+                        .Select(x => converter.ConvertFromString(x.Trim()))
+                        .ToArray();
 
-            //Create an array of that type and set it as the Model value
-            var typedValues = Array.CreateInstance(elementType, values.Length);
-            values.CopyTo(typedValues, 0);
-            bindingContext.Model = typedValues;
+                //Create an array of that type and set it as the Model value
+                var typedValues = Array.CreateInstance(elementType, values.Length);
+                values.CopyTo(typedValues, 0);
+                bindingContext.Model = typedValues;
 
-            //Return successful result, passing in the Model
-            bindingContext.Result = ModelBindingResult.Success(bindingContext.Model);
-            return Task.CompletedTask;
+                //Return successful result, passing in the Model
+                bindingContext.Result = ModelBindingResult.Success(bindingContext.Model);
+                return Task.CompletedTask;
+            }
+            catch (Exception ex)
+            {
+                bindingContext.Result = ModelBindingResult.Failed();
+                return Task.CompletedTask;
+            }
         }
     }
 }

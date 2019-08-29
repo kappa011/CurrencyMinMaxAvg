@@ -33,12 +33,12 @@ namespace CurrencyMinMaxAvg.API.Services
         //}
 
         public async Task<IEnumerable<ExchangeRateOnADate>> GetExchangeRatesOnDatesAsync(CurrenciesEnum baseCurrency,
-                CurrenciesEnum targetCurrency, IEnumerable<string> dates)
+                CurrenciesEnum targetCurrency, IEnumerable<DateTime> dates)
         {
             var httpClient = _httpClientFactory.CreateClient();
 
             var singleDateUrls = dates.Select(date =>
-                $"https://api.exchangeratesapi.io/{date}?base={baseCurrency}&symbols={targetCurrency}")
+                $"https://api.exchangeratesapi.io/{date:yyyy-MM-dd}?base={baseCurrency}&symbols={targetCurrency}")
                 .ToList();
 
             //Create tasks query
