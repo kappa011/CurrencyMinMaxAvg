@@ -13,4 +13,8 @@
     <Folder Include="Properties\PublishProfiles\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="CurrencyMinMaxAvg.sln" />
+  </ItemGroup>
+
 </Project>
